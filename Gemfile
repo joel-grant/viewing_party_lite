@@ -37,6 +37,14 @@ gem 'bootsnap', '>= 1.1.0', require: false
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'pry'
+  gem 'rspec-rails', '~> 4.0.1'
+  gem 'capybara'
+  gem 'orderly'
+  gem 'shoulda-matchers', '~> 3.1'
+  gem 'simplecov', require: false, group: :test
+  gem 'launchy'
+  gem 'faraday'
+  # gem 'webmock'
 end
 
 group :development do
@@ -46,12 +54,12 @@ group :development do
   gem 'rubocop-rails'
 end
 
-group :test do 
-  gem 'rspec-rails'
+group :test do
+  # gem 'rspec-rails'
   gem 'capybara'
   gem 'launchy'
   gem 'simplecov'
-end 
+end
 
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
