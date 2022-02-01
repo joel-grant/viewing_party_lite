@@ -2,8 +2,8 @@
 <h1>Viewing Party Lite</h1>
 <h3>By Joel Grant and Dylan Harper</h3>
 
-<p><%= button_to "Create User", "/users/new", method: :get %></p>
+<p><%= button_to "Create User", "/register", method: :get %></p>
 
 <% @users.each do |user| %>
-  <p><%= link_to "#{user.name}", user_path(user.id) %></p>
+  <p><%= link_to "#{user.name}", "/users/#{user.id}" %></p>
 <% end %>
