@@ -100,9 +100,13 @@ GEM
     matrix (0.4.2)
     method_source (1.0.0)
     mini_mime (1.1.2)
+    mini_portile2 (2.7.1)
     minitest (5.15.0)
     msgpack (1.4.4)
     nio4r (2.5.8)
+    nokogiri (1.13.1)
+      mini_portile2 (~> 2.7.0)
+      racc (~> 1.4)
     nokogiri (1.13.1-x86_64-darwin)
       racc (~> 1.4)
     orderly (0.1.1)
@@ -237,6 +241,7 @@ GEM
       nokogiri (~> 1.8)
 
 PLATFORMS
+  ruby
   x86_64-darwin-20
 
 DEPENDENCIES
@@ -252,7 +257,7 @@ DEPENDENCIES
   pry
   puma (~> 3.11)
   rails (~> 5.2.6)
-  rspec-rails (~> 4.0.1)
+  rspec-rails
   rubocop-rails
   sass-rails (~> 5.0)
   shoulda-matchers (~> 3.1)
