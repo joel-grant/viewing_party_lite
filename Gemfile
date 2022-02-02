@@ -44,6 +44,8 @@ group :development, :test do
   gem 'simplecov', require: false, group: :test
   gem 'launchy'
   gem 'faraday'
+  gem 'factory_bot_rails'
+  gem 'faker'
   # gem 'webmock'
 end
 

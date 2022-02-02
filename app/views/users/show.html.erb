@@ -1,0 +1,10 @@
+<h1><%= @user.name %>'s Dashboard</h1>
+<p><%= @user.email %></p>
+
+<p><%= button_to "Discover Movies", "/users/#{@user.id}/discover", method: :get %></p>
+
+<div ="invited-parties">
+  <% @user.invited_parties.each do |party| %>
+    <p><%= party.id %></p>
+  <% end %>
+</div>
