@@ -1,12 +1,9 @@
 require 'rails_helper'
 
-RSpec.describe User, type: :model do
-  describe 'relationships' do
-     it { should have_many :user_parties }
-     it { should have_many(:parties).through(:user_parties) }
-  end
+RSpec.describe 'the user show page' do
 
   before :each do
+    # @user = User.create!(name: 'Bob', email: 'bob.bob@bob.com')
     @user_1 = create(:user)
     @user_2 = create(:user)
     @user_3 = create(:user)
@@ -24,7 +21,7 @@ RSpec.describe User, type: :model do
     # @party_2 = Party.create!(:party)
     # @party_3 = Party.create!(:party)
     # @party_4 = Party.create!(:party)
-
+    #
     @user_party_1 = UserParty.create!(user_id: @user_1.id, party_id: @party_1.id, status: "Invited")
     @user_party_2 = UserParty.create!(user_id: @user_1.id, party_id: @party_2.id, status: "Invited")
     @user_party_3 = UserParty.create!(user_id: @user_1.id, party_id: @party_3.id, status: "Invited")
@@ -33,13 +30,55 @@ RSpec.describe User, type: :model do
     @user_party_6 = UserParty.create!(user_id: @user_3.id, party_id: @party_1.id, status: "Invited")
     @user_party_7 = UserParty.create!(user_id: @user_3.id, party_id: @party_1.id, status: "Invited")
     @user_party_8 = UserParty.create!(user_id: @user_4.id, party_id: @party_1.id, status: "Invited")
+
+    # @movie_1 = create(:movie)
+    # @movie_2 = create(:movie)
+    # @movie_3 = create(:movie)
+    # @movie_4 = create(:movie)
+    # @movie_5 = create(:movie)
+    # @movie_6 = create(:movie)
+    #
+    # @party_1 = create(:party, movie: movie_1)
+    # @party_2 = create(:party, movie: movie_2)
+    # @party_3 = create(:party, movie: movie_3)
+    # @party_3 = create(:party, movie: movie_4)
+    #
+    # @user_party = create(:user_party, user: user_1, party: party_1)
+    # @user_party = create(:user_party, user: user_1, party: party_1)
+    # @user_party = create(:user_party, user: user_3, party: party_3)
+    # @user_party = create(:user_party, user: user_3, party: party_3)
+
+
+
+
+    visit "/users/#{@user_1.id}"
   end
 
+  it 'can visit the correct show page' do
+    expect(current_path).to eq("/users/#{@user_1.id}")
+  end
 
-  describe 'instance methods' do
-    it '#invited_parties' do
-      expect(@user_1.invites).to eq([@party_1, @party_2, @party_3])
+  it 'can display the user info' do
+    expect(page).to have_content(@user_1.name)
+    expect(page).to have_content(@user_1.email)
+  end
+
+  it 'has discover movie button' do
+    click_button "Discover Movies"
+
+    expect(current_path).to eq("/users/#{@user_1.id}/discover")
+  end
+
+  it 'lists viewing parties user is invited to' do
+    within('#invited-parties') do
+      expect(page).to have_content(@party_1.id)
+      expect(page).to have_content(@party_2.id)
+      expect(page).to have_content(@party_3.id)
+      expect(page).to_not have_content(@party_4.id)
     end
   end
+
+
+
 
 end
