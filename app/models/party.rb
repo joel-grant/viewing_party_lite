@@ -3,6 +3,7 @@ class Party < ApplicationRecord
                         :date,
                         :start_time
                         #movie_id
+
   has_many :user_parties
   has_many :users, through: :user_parties
   belongs_to :movie
