@@ -3,8 +3,8 @@
 
 <p><%= button_to "Discover Movies", "/users/#{@user.id}/discover", method: :get %></p>
 
-<div ="invited-parties">
-  <% @user.invited_parties.each do |party| %>
+<div id="invited-parties">
+  <% @user.invites.each do |party| %>
     <p><%= party.id %></p>
   <% end %>
 </div>

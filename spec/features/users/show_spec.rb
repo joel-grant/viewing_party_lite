@@ -74,6 +74,7 @@ RSpec.describe 'the user show page' do
       expect(page).to have_content(@party_1.id)
       expect(page).to have_content(@party_2.id)
       expect(page).to have_content(@party_3.id)
+      expect(page).to_not have_content(@party_4.id)
     end
   end
 
