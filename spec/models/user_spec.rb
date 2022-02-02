@@ -42,4 +42,10 @@ RSpec.describe User, type: :model do
     end
   end
 
+  describe '#hosting' do
+    it 'returns the parties that the user has created' do
+      expect(@user_1.hosting).to eq([@party_4])
+    end
+  end
+
 end
