@@ -9,7 +9,7 @@ FactoryBot.define do
     duration {0}
     date {"String"}
     start_time {"String"}
-    movie
+    movie #random integer?
   end
 
   factory :movie do
