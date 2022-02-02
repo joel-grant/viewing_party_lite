@@ -6,7 +6,7 @@ FactoryBot.define do
   end
 
   factory :movie do
-    db_id { Faker::Number.number(digits: 10) }
+    db_id { Faker::Number.number(digits: 3) }
     title { Faker::Movie.title }
     poster_path { Faker::Lorem.characters(number:15) }
     genre_ids { Faker::Lorem.characters(number:5) }
@@ -16,26 +16,26 @@ FactoryBot.define do
   end
 
   factory :party do
-    duration {0}
-    date {"String"}
-    start_time {"String"}
-    movie #random integer?
-  end
-
-
-
-  factory :review do
-    movie
-    author {"String"}
-    description {"String"}
-    rating {1.0}
+    duration { Faker::Number.number(digits: 3) }
+    date { Faker::Lorem.characters(number: 8) }
+    start_time { Faker::Number.number(digits: 3) }
+    movie_id { Faker::Number.number(digits: 2) }
   end
 
   factory :user_party do
-    status {"String"}
-    user
-    party
+    status { "Invited" }
+    user_id { Faker::Number.number(digits: 2) }
+    party_id { Faker::Number.number(digits: 2) }
   end
+
+
+  # factory :review do
+  #   movie
+  #   author {"String"}
+  #   description {"String"}
+  #   rating {1.0}
+  # end
+
 end
 
 
