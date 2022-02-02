@@ -130,7 +130,7 @@ RSpec.describe 'the user show page' do
         expect(page).to have_content(@party_1.date)
         expect(page).to have_content(@party_1.start_time)
         expect(page).to have_content("Party Host: #{@user_1.name}")
-        
+
         expect(page).to have_content("Attendee: #{@user_2.name}")
         expect(page).to have_content("Attendee: #{@user_3.name}")
       end

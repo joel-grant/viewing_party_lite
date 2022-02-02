@@ -5,6 +5,16 @@ FactoryBot.define do
     email { Faker::Lorem.characters(number:10) }
   end
 
+  factory :movie do
+    db_id { Faker::Number.number(digits: 10) }
+    title { Faker::Movie.title }
+    poster_path { Faker::Lorem.characters(number:15) }
+    genre_ids { Faker::Lorem.characters(number:5) }
+    overview { Faker::Lorem.paragraph(sentence_count: 3) }
+    vote_average { Faker::Number.number(digits: 10) }
+    # runtime {"String"}
+  end
+
   factory :party do
     duration {0}
     date {"String"}
@@ -12,15 +22,7 @@ FactoryBot.define do
     movie #random integer?
   end
 
-  factory :movie do
-    name {"String"}
-    runtime {"String"}
-    genre {"String"}
-    image_url {"String"}
-    summary {"String"}
-    review
-    party
-  end
+
 
   factory :review do
     movie

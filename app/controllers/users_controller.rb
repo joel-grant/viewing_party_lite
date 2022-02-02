@@ -3,8 +3,6 @@ class UsersController < ApplicationController
   end
 
   def show
-    facade = MovieFacade.new
-    require "pry"; binding.pry
     @user = User.find(params[:id])
   end
 
