@@ -42,7 +42,13 @@ RSpec.describe Party, type: :model do
 
   describe '#host' do
     it 'returns the user who is the host of the party' do
-      expect(@part_1.host).to eq(@user_1.name)
+      expect(@party_1.host).to eq(@user_1)
+    end
+  end
+
+  describe '#attendees' do
+    it 'returns a list of the invited people of a party, but not the host' do
+      expect(@party_1.attendees).to eq([@user_2, @user_3])
     end
   end
 end
