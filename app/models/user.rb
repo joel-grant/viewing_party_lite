@@ -6,4 +6,9 @@ class User < ApplicationRecord
     parties
       .where('user_parties.status = ?', 'Invited')
   end
+
+  def hosting
+    parties
+      .where('user_parties.status = ?', 'Host')
+  end
 end
