@@ -16,12 +16,12 @@ ActiveRecord::Schema.define(version: 2022_02_01_022853) do
   enable_extension "plpgsql"
 
   create_table "movies", force: :cascade do |t|
-    t.string "name"
-    #should we change runtime data type
-    t.string "runtime"
-    t.string "genre"
-    t.string "image_url"
-    t.text "summary"
+    t.integer "db_id"
+    t.string "title"
+    t.string "poster_path"
+    t.string "genre_ids"
+    t.text "overview"
+    t.float "vote_average"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -49,7 +49,6 @@ ActiveRecord::Schema.define(version: 2022_02_01_022853) do
   create_table "user_parties", force: :cascade do |t|
     t.bigint "user_id"
     t.bigint "party_id"
-    #make status an enum
     t.string "status"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
