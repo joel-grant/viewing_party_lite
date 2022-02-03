@@ -22,6 +22,12 @@ class MovieFacade
     @_all_movies
   end
 
+  def top_20
+    sorted = all_movies.sort_by { |movie| movie.vote_average }
+    sorted = sorted.reverse
+    top_20 = sorted.take(20)
+  end
+
 
   def service
     @_service ||= MovieService.new

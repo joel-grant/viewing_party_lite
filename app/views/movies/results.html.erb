@@ -1,0 +1,5 @@
+<div id="top-20-movies">
+  <% @top_20.each do |movie| %>
+    <p>Title: <%= movie.title %>, Rating: <%= movie.vote_average %></p>
+  <% end %>
+</div>

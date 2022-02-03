@@ -3,8 +3,9 @@ class MoviesController < ApplicationController
 
   def results
     @facade = MovieFacade.new
-    
-    require "pry"; binding.pry
+    if params[:q] == 'top20'
+      @top_20 = @facade.top_20
+    end
   end
 
 
