@@ -1,1 +1,1 @@
-<p><%= button_to "Top Rated Movies", "/users/#{@user.id}/movies?q=top%20rated", method: :get %></p>
+<p><%= button_to "Top Rated Movies", "/users/#{@user.id}/movies", params: {q: 'top20'}, method: :get %></p>

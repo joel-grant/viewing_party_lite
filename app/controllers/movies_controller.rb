@@ -2,7 +2,9 @@ class MoviesController < ApplicationController
 
 
   def results
-require "pry"; binding.pry
+    @facade = MovieFacade.new
+    
+    require "pry"; binding.pry
   end
 
 

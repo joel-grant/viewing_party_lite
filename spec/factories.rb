@@ -11,7 +11,7 @@ FactoryBot.define do
     poster_path { Faker::Lorem.characters(number:15) }
     genre_ids { Faker::Lorem.characters(number:5) }
     overview { Faker::Lorem.paragraph(sentence_count: 3) }
-    vote_average { Faker::Number.number(digits: 10) }
+    vote_average { Faker::Number.number(digits: 1) }
   end
 
   factory :party do

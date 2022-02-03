@@ -1,6 +1,6 @@
 # require 'active_poro'
 
-class Movie
+class MovieAPI
 
   attr_reader :db_id,
               :title,
@@ -8,6 +8,7 @@ class Movie
               :genre,
               :overview,
               :vote_average
+              # :vote_count
               # :cast
               #runtime
 
@@ -18,8 +19,7 @@ class Movie
     @genre_ids = data[:genre_ids]
     @overview = data[:overview]
     @vote_average = data[:vote_average]
-    # @runtime = data[:runtime]
-    # @cast = data[:cast]
+    # @vote_count = data[:vote_count]
   end
 
 end
