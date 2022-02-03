@@ -1,6 +1,10 @@
 class MoviesController < ApplicationController
-  def index
+
+
+  def results
+require "pry"; binding.pry
   end
+
 
   def show
     @movie = Movie.find(params[:id])

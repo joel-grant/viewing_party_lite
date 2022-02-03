@@ -6,8 +6,9 @@ Rails.application.routes.draw do
 
   post '/users', to: 'users#create'
   get '/users/:id', to: 'users#show'
-  get '/users/:id/discover', to: 'movies#index'
+  get '/users/:id/discover', to: 'users#discover'
   get '/users/:id/movies/:id', to: 'movies#show'
+  get '/users/:id/movies', to: 'movies#results'
   # resource :users, only: [:show]
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

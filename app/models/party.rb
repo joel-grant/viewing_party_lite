@@ -9,8 +9,9 @@ class Party < ApplicationRecord
   belongs_to :movie
 
   def host
-    users
-      .where('user_parties.status = ?', 'Host').first
+    x = users
+      .where('user_parties.status = ?', 'Host')
+      .first
   end
 
   def attendees

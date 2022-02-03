@@ -91,12 +91,7 @@ RSpec.describe 'the user show page' do
         click_link "#{@party_2.movie.title}"
       end
     end
-
     expect(current_path).to eq("/users/#{@user_1.id}/movies/#{@party_2.movie.id}")
-  end
-
-  it 'has my name in bold as an attendee' do
-
   end
 
   it 'has a section with parties that the user has created' do
