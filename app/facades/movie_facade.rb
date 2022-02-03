@@ -17,6 +17,3 @@ class MovieFacade
     @_service ||= MovieService.new
   end
 end
-
-x = MovieFacade.new
-x.top_40_movies
