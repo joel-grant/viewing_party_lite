@@ -24,6 +24,8 @@ http_interactions:
       - chunked
       Connection:
       - keep-alive
+      Date:
+      - Fri, 04 Feb 2022 16:52:54 GMT
       Server:
       - openresty
       Access-Control-Allow-Origin:
@@ -33,18 +35,16 @@ http_interactions:
       Access-Control-Expose-Headers:
       - ETag, X-RateLimit-Limit, X-RateLimit-Remaining, X-RateLimit-Reset, Retry-After,
         Content-Length, Content-Range
+      Cache-Control:
+      - public, max-age=28800
       X-Memc:
       - HIT
       X-Memc-Key:
       - af4426908218dad356a942000911b15f14e85c85
       X-Memc-Age:
-      - '1871'
+      - '10917'
       X-Memc-Expires:
-      - '13197'
-      Date:
-      - Fri, 04 Feb 2022 15:45:40 GMT
-      Cache-Control:
-      - public, max-age=28800
+      - '4635'
       Etag:
       - W/"98d6f4fb3a0e0c77544a7277f32baebb"
       Vary:
@@ -52,16 +52,16 @@ http_interactions:
       X-Cache:
       - Hit from cloudfront
       Via:
-      - 1.1 f2ad9d6c3218f50a68fdbc2b2af517aa.cloudfront.net (CloudFront)
+      - 1.1 28d79637e27f11e3ab19a9515e273a5a.cloudfront.net (CloudFront)
       X-Amz-Cf-Pop:
-      - SFO53-C1
+      - DEN50-C2
       X-Amz-Cf-Id:
-      - 1kYWzf-kiZm3Suiy7mQz5bl9hTWibTRdHg4u8feOHGCVSxt1z97PZg==
+      - t51XqXT0jXnPktIBr-qBZ6-jVXVYO1AZh_HPB1NZMaTBDjmuTM1UYw==
       Age:
-      - '549'
+      - '1841'
     body:
       encoding: ASCII-8BIT
       string: '{"genres":[{"id":28,"name":"Action"},{"id":12,"name":"Adventure"},{"id":16,"name":"Animation"},{"id":35,"name":"Comedy"},{"id":80,"name":"Crime"},{"id":99,"name":"Documentary"},{"id":18,"name":"Drama"},{"id":10751,"name":"Family"},{"id":14,"name":"Fantasy"},{"id":36,"name":"History"},{"id":27,"name":"Horror"},{"id":10402,"name":"Music"},{"id":9648,"name":"Mystery"},{"id":10749,"name":"Romance"},{"id":878,"name":"Science
         Fiction"},{"id":10770,"name":"TV Movie"},{"id":53,"name":"Thriller"},{"id":10752,"name":"War"},{"id":37,"name":"Western"}]}'
-  recorded_at: Fri, 04 Feb 2022 15:54:49 GMT
+  recorded_at: Fri, 04 Feb 2022 17:23:35 GMT
 recorded_with: VCR 6.0.0
