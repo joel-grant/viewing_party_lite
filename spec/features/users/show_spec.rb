@@ -8,15 +8,19 @@ RSpec.describe 'the user show page' do
     @user_3 = create(:user)
     @user_4 = create(:user)
 
-    @movie1 = create(:movie)
-    @movie2 = create(:movie)
-    @movie3 = create(:movie)
-    @movie4 = create(:movie)
+    @movie1 = MovieFacade.all_movies.first
 
-    @party_1 = create(:party, movie_id: @movie1.id)
-    @party_2 = create(:party, movie_id: @movie1.id)
-    @party_3 = create(:party, movie_id: @movie2.id)
-    @party_4 = create(:party, movie_id: @movie3.id)
+    @movie2 = MovieFacade.all_movies.second
+
+    @movie3 = MovieFacade.all_movies.third
+
+    @movie4 = MovieFacade.all_movies.fourth
+
+
+    @party_1 = create(:party, movie_id: @movie1.db_id)
+    @party_2 = create(:party, movie_id: @movie1.db_id)
+    @party_3 = create(:party, movie_id: @movie2.db_id)
+    @party_4 = create(:party, movie_id: @movie3.db_id)
 
     @user_party_1 = create(:user_party, user_id: @user_1.id, party_id: @party_1.id, status: "Host")
     @user_party_2 = create(:user_party, user_id: @user_1.id, party_id: @party_2.id)
@@ -34,16 +38,16 @@ RSpec.describe 'the user show page' do
     visit "/users/#{@user_1.id}"
   end
 
-  it 'can visit the correct show page' do
+  it 'can visit the correct show page', :vcr do
     expect(current_path).to eq("/users/#{@user_1.id}")
   end
 
-  it 'can display the user info' do
+  it 'can display the user info', :vcr do
     expect(page).to have_content(@user_1.name)
     expect(page).to have_content(@user_1.email)
   end
 
-  it 'has discover movie button' do
+  it 'has discover movie button', :vcr do
     click_button "Discover Movies"
 
     expect(current_path).to eq("/users/#{@user_1.id}/discover")
@@ -61,7 +65,7 @@ RSpec.describe 'the user show page' do
   #   end
   # end
 
-  it 'has the event details for each party' do
+  it 'has the event details for each party', :vcr do
     within('#invited-parties') do
       within("#party-#{@party_2.id}") do
         expect(page).to have_content(@party_2.movie.title)
@@ -85,16 +89,16 @@ RSpec.describe 'the user show page' do
     end
   end
 
-  it 'has a movie title for each party that is a link' do
+  it 'has a movie title for each party that is a link', :vcr do
     within('#invited-parties') do
       within("#party-#{@party_2.id}") do
         click_link "#{@party_2.movie.title}"
       end
     end
-    expect(current_path).to eq("/users/#{@user_1.id}/movies/#{@party_2.movie.id}")
+    expect(current_path).to eq("/users/#{@user_1.id}/movies/#{@party_2.movie.db_id}")
   end
 
-  it 'has a section with parties that the user has created' do
+  it 'has a section with parties that the user has created', :vcr do
     within('#created-parties') do
       within("#party-#{@party_1.id}") do
         expect(page).to have_content(@party_1.movie.title)
