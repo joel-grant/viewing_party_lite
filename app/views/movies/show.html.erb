@@ -13,3 +13,14 @@
 </div>
 
 <p>Summary: <%= @movie.overview %></p>
+
+<h2>Cast:</h2>
+<% @cast.each do |cast_member| %>
+  <p><%= cast_member.name %> as <%= cast_member.character %></p>
+<% end %>
+
+<h2><%= @reviews.count %> Reviews</h2>
+<% @reviews.each do |movie_review| %>
+  <p>Author: <%= movie_review.author %> </p>
+  <p> <%= movie_review.content %> </p>
+<% end %>
