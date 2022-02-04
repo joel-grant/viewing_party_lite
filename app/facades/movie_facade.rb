@@ -8,7 +8,6 @@ class MovieFacade
     movie_data = movie_data.flatten
 
     @_all_movies = movie_data.map do |data|
-
       MovieAPI.new(data.slice(:id,
                            :title,
                            :poster_path,

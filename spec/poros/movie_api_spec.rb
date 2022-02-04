@@ -10,6 +10,7 @@ it 'exists' do
     genre_ids: 2,
     overview: 'description',
     vote_average: 5.0
+    # runtime: 180
   }
 
   movie = MovieAPI.new(attributes)
