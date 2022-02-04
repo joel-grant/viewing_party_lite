@@ -38,7 +38,10 @@ class MovieFacade
                              :vote_average,
                              :vote_count))
       end
+    else
+      results =[]
     end
+    results
   end
 
   def self.movie_id_search(id)
