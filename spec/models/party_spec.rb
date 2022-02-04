@@ -20,10 +20,18 @@ RSpec.describe Party, type: :model do
 
     num = 10
 
+
+    @party_1 = create(:party, movie_id: @movie1.id)
+    @party_2 = create(:party, movie_id: @movie1.id)
+    @party_3 = create(:party, movie_id: @movie2.id)
+    @party_4 = create(:party, movie_id: @movie3.id)
+    @party = create(:party)
+
     @party_1 = create(:party, movie_id: num)
     @party_2 = create(:party, movie_id: num)
     @party_3 = create(:party, movie_id: num)
     @party_4 = create(:party, movie_id: num)
+
 
     @user_party_1 = create(:user_party, user_id: @user_1.id, party_id: @party_1.id, status: "Host")
     @user_party_2 = create(:user_party, user_id: @user_1.id, party_id: @party_2.id)
@@ -48,6 +56,12 @@ RSpec.describe Party, type: :model do
   describe '#attendees' do
     it 'returns a list of the invited people of a party, but not the host' do
       expect(@party_1.attendees).to eq([@user_2, @user_3])
+    end
+  end
+
+  describe '#movie' do
+    xit 'returns the movie based on movie id' do
+      expect(@party.movie("238").name).to eq("The Godfather")
     end
   end
 end
