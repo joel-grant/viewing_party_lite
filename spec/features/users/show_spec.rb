@@ -9,13 +9,9 @@ RSpec.describe 'the user show page' do
     @user_4 = create(:user)
 
     @movie1 = MovieFacade.all_movies.first
-
     @movie2 = MovieFacade.all_movies.second
-
     @movie3 = MovieFacade.all_movies.third
-
     @movie4 = MovieFacade.all_movies.fourth
-
 
     @party_1 = create(:party, movie_id: @movie1.db_id)
     @party_2 = create(:party, movie_id: @movie1.db_id)
