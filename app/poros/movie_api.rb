@@ -5,12 +5,9 @@ class MovieAPI
   attr_reader :db_id,
               :title,
               :poster_path,
-              :genre,
+              :genre_ids,
               :overview,
               :vote_average
-              # :vote_count
-              # :cast
-              #runtime
 
   def initialize(data)
     @db_id = data[:id]
