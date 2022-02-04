@@ -7,7 +7,7 @@
   <h3>My Invited Parties</h3>
   <% @user.invites.each do |party| %>
     <div id="party-<%= party.id %>">
-      <p><%= link_to "#{party.movie(party.movie_id).title}", "/users/#{@user.id}/movies/#{party.movie.id}" %></p>
+      <p><%= link_to "#{party.movie(party.movie_id).title}", "/users/#{@user.id}/movies/#{party.movie_id}" %></p>
       <p><%= party.date %></p>
       <p><%= party.start_time %></p>
       <p>Party Host: <%= party.host.name %></p>
@@ -26,7 +26,7 @@
   <h3>My Created Parties</h3>
   <% @user.hosting.each do |party| %>
     <div id="party-<%= party.id %>">
-      <p><%= link_to "#{party.movie.title}", "/users/#{@user.id}/movies/#{party.movie.id}" %></p>
+      <p><%= link_to "#{party.movie(party.movie_id).title}", "/users/#{@user.id}/movies/#{party.movie_id}" %></p>
       <p><%= party.date %></p>
       <p><%= party.start_time %></p>
       <p>Party Host: <%= party.host.name %></p>
