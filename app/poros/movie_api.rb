@@ -1,5 +1,3 @@
-# require 'active_poro'
-
 class MovieAPI
 
   attr_reader :db_id,
@@ -8,6 +6,7 @@ class MovieAPI
               :genre_ids,
               :overview,
               :vote_average
+              # :runtime
 
   def initialize(data)
     @db_id = data[:id]
@@ -16,7 +15,11 @@ class MovieAPI
     @genre_ids = data[:genre_ids]
     @overview = data[:overview]
     @vote_average = data[:vote_average]
-    # @vote_count = data[:vote_count]
+    # @runtime = data[:runtime]
+  end
+
+  def runtime
+    MovieDetailsFacade.find_runtime(@db_id)
   end
 
 end
