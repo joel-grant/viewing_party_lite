@@ -17,16 +17,16 @@ RSpec.describe User, type: :model do
     @user_3 = create(:user)
     @user_4 = create(:user)
 
+    num = 10
+    # @movie1 = MovieFacade.all_movies.first
+    # @movie2 = MovieFacade.all_movies.second
+    # @movie3 = MovieFacade.all_movies.third
+    # @movie4 = MovieFacade.all_movies.fourth
 
-    @movie1 = create(:movie)
-    @movie2 = create(:movie)
-    @movie3 = create(:movie)
-    @movie4 = create(:movie)
-
-    @party_1 = create(:party, movie_id: @movie1.id)
-    @party_2 = create(:party, movie_id: @movie1.id)
-    @party_3 = create(:party, movie_id: @movie2.id)
-    @party_4 = create(:party, movie_id: @movie3.id)
+    @party_1 = create(:party, movie_id: num)
+    @party_2 = create(:party, movie_id: num)
+    @party_3 = create(:party, movie_id: num)
+    @party_4 = create(:party, movie_id: num)
 
     @user_party_1 = create(:user_party, user_id: @user_1.id, party_id: @party_1.id)
     @user_party_2 = create(:user_party, user_id: @user_1.id, party_id: @party_2.id)
