@@ -40,7 +40,8 @@ RSpec.describe 'the movie results page' do
       within('#movie-results') do
         @movies = MovieFacade.top_20
         @movies.each do |movie|
-          expect(page).to have_content("Title: #{movie.title}, Rating: #{movie.vote_average}")
+          expect(page).to have_content(movie.title)
+          expect(page).to have_content("Rating: #{movie.vote_average}")
         end
     end
   end
@@ -69,5 +70,16 @@ RSpec.describe 'the movie results page' do
 
     click_button "Return to Discover Page"
     expect(current_path).to eq("/users/#{@user_1.id}/discover")
+  end
+
+  it 'links to a movies detail page from top rated', :vcr do
+    visit "/users/#{@user_1.id}/discover"
+
+    fill_in :keyword, with: "#{@movie1.title}"
+    click_button "Search"
+
+    click_link("#{@movie1.title}")
+
+    expect(current_path).to eq("/users/#{@user_1.id}/movies/#{@movie1.db_id}")
   end
 end
