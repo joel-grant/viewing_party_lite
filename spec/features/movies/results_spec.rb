@@ -60,4 +60,26 @@ RSpec.describe 'the movie results page' do
         expect(page).to have_content('Title: Spirited Away, Rating: 8.5')
     end
   end
+
+  it 'displays the results of a keyword search' do
+    fill_in :keyword, with: "True Lies"
+    click_button "Search"
+
+    expect(current_path).to eq("/users/#{@user_1.id}/movies")
+
+    within("#movie-results") do
+      expect(page).to have_content("True")
+      expect(page).to have_content("Lies")
+    end
+  end
+
+  it 'has a link to return to the discover page' do
+    fill_in :keyword, with: "True Lies"
+    click_button "Search"
+
+    expect(current_path).to eq("/users/#{@user_1.id}/movies")
+
+    click_link "Return to Discover Page"
+    expect(current_path).to eq("/users/#{@user_1.id}/discover")
+  end
 end
