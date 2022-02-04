@@ -28,14 +28,16 @@ class MovieFacade
 
   def self.search(query)
     json = service.movie_name_search(query)
-    results = json[:results].map do |movie|
-    MovieAPI.new(movie.slice(:id,
-                         :title,
-                         :poster_path,
-                         :genre_ids,
-                         :overview,
-                         :vote_average,
-                         :vote_count))
+    if json != nil
+      results = json[:results].map do |movie|
+        MovieAPI.new(movie.slice(:id,
+                             :title,
+                             :poster_path,
+                             :genre_ids,
+                             :overview,
+                             :vote_average,
+                             :vote_count))
+      end
     end
   end
 
