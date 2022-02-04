@@ -13,7 +13,4 @@ class MoviesController < ApplicationController
     @user = User.find(params[:user_id])
     @movie = Movie.find(params[:movie_id])
   end
-
-  def new
-  end 
 end
