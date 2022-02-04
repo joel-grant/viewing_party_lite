@@ -84,7 +84,7 @@ RSpec.describe 'the movie results page' do
 
     expect(current_path).to eq("/users/#{@user_1.id}/movies")
 
-    click_link "Return to Discover Page"
+    click_button "Return to Discover Page"
     expect(current_path).to eq("/users/#{@user_1.id}/discover")
   end
 end

@@ -1,6 +1,4 @@
 class MoviesController < ApplicationController
-
-
   def results
     @user = User.find(params[:id])
 
@@ -12,6 +10,7 @@ class MoviesController < ApplicationController
   end
 
   def show
-    @movie = Movie.find(params[:id])
+    @user = User.find(params[:user_id])
+    @movie = Movie.find(params[:movie_id])
   end
 end
