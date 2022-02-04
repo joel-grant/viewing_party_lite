@@ -34,10 +34,11 @@ RSpec.describe 'the movie results page' do
   end
 
   it 'lists top 20 movie titles and ratings', :vcr do
-      visit "/users/#{@user_1.id}/discover"
+    visit "/users/#{@user_1.id}/discover"
+
       click_button "Top Rated Movies"
 
-      within('#top-20-movies') do
+      within('#movie-results') do
         expect(page).to have_content('Title: Your Eyes Tell, Rating: 8.8')
         expect(page).to have_content('Title: The Shawshank Redemption, Rating: 8.7')
         expect(page).to have_content('Title: The Godfather, Rating: 8.7')
@@ -61,7 +62,9 @@ RSpec.describe 'the movie results page' do
     end
   end
 
-  it 'displays the results of a keyword search' do
+  it 'displays the results of a keyword search', :vcr do
+    visit "/users/#{@user_1.id}/discover"
+
     fill_in :keyword, with: "True Lies"
     click_button "Search"
 
@@ -73,7 +76,9 @@ RSpec.describe 'the movie results page' do
     end
   end
 
-  it 'has a link to return to the discover page' do
+  it 'has a link to return to the discover page', :vcr do
+    visit "/users/#{@user_1.id}/discover"
+
     fill_in :keyword, with: "True Lies"
     click_button "Search"
 
