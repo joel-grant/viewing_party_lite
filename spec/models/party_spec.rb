@@ -5,13 +5,11 @@ RSpec.describe Party, type: :model do
     it { should validate_presence_of :duration }
     it { should validate_presence_of :date}
     it { should validate_presence_of :start_time}
-    # it { should validate_presence_of :movie_id}
   end
 
   describe 'relationships' do
     it { should have_many :user_parties}
     it { should have_many(:users).through(:user_parties)}
-    # it { should belong_to :movie}
   end
 
   before :each do
@@ -20,16 +18,21 @@ RSpec.describe Party, type: :model do
     @user_3 = create(:user)
     @user_4 = create(:user)
 
-    @movie1 = create(:movie)
-    @movie2 = create(:movie)
-    @movie3 = create(:movie)
-    @movie4 = create(:movie)
+    num = 10
+
 
     @party_1 = create(:party, movie_id: @movie1.id)
     @party_2 = create(:party, movie_id: @movie1.id)
     @party_3 = create(:party, movie_id: @movie2.id)
     @party_4 = create(:party, movie_id: @movie3.id)
     @party = create(:party)
+
+    @party_1 = create(:party, movie_id: num)
+    @party_2 = create(:party, movie_id: num)
+    @party_3 = create(:party, movie_id: num)
+    @party_4 = create(:party, movie_id: num)
+
+
     @user_party_1 = create(:user_party, user_id: @user_1.id, party_id: @party_1.id, status: "Host")
     @user_party_2 = create(:user_party, user_id: @user_1.id, party_id: @party_2.id)
     @user_party_3 = create(:user_party, user_id: @user_1.id, party_id: @party_3.id)
