@@ -1,8 +1,8 @@
 require 'rails_helper'
 
 RSpec.describe 'the movie results page' do
-
   before :each do
+
     @user_1 = create(:user)
     @user_2 = create(:user)
     @user_3 = create(:user)
@@ -31,33 +31,33 @@ RSpec.describe 'the movie results page' do
     @user_party_11 = create(:user_party, user_id: @user_4.id, party_id: @party_3.id)
     @user_party_12 = create(:user_party, user_id: @user_4.id, party_id: @party_4.id, status: "Host")
 
-    visit "/users/#{@user_1.id}/discover"
   end
 
-  it 'lists top 20 movie titles and ratings' do
-    click_button "Top Rated Movies"
+  it 'lists top 20 movie titles and ratings', :vcr do
+      visit "/users/#{@user_1.id}/discover"
+      click_button "Top Rated Movies"
 
-    within('#movie-results') do
-      expect(page).to have_content('Title: Your Eyes Tell, Rating: 8.8')
-      expect(page).to have_content('Title: The Shawshank Redemption, Rating: 8.7')
-      expect(page).to have_content('Title: The Godfather, Rating: 8.7')
-      expect(page).to have_content('Title: Dilwale Dulhania Le Jayenge, Rating: 8.7')
-      expect(page).to have_content("Title: Schindler's List, Rating: 8.6")
-      expect(page).to have_content("Title: Gabriel's Inferno, Rating: 8.6")
-      expect(page).to have_content('Title: The Godfather: Part II, Rating: 8.6')
-      expect(page).to have_content("Title: Gabriel's Inferno Part III, Rating: 8.6")
-      expect(page).to have_content('Title: Hope, Rating: 8.6')
-      expect(page).to have_content("Title: Gabriel's Inferno Part II, Rating: 8.6")
-      expect(page).to have_content('Title: The Good, the Bad and the Ugly, Rating: 8.5')
-      expect(page).to have_content('Title: The Lord of the Rings: The Return of the King, Rating: 8.5')
-      expect(page).to have_content('Title: Pulp Fiction, Rating: 8.5')
-      expect(page).to have_content('Title: The Dark Knight, Rating: 8.5')
-      expect(page).to have_content('Title: The Green Mile, Rating: 8.5')
-      expect(page).to have_content('Title: 12 Angry Men, Rating: 8.5')
-      expect(page).to have_content('Title: Parasite, Rating: 8.5')
-      expect(page).to have_content('Title: Given, Rating: 8.5')
-      expect(page).to have_content('Title: Evangelion: 3.0+1.0 Thrice Upon a Time, Rating: 8.5')
-      expect(page).to have_content('Title: Spirited Away, Rating: 8.5')
+      within('#top-20-movies') do
+        expect(page).to have_content('Title: Your Eyes Tell, Rating: 8.8')
+        expect(page).to have_content('Title: The Shawshank Redemption, Rating: 8.7')
+        expect(page).to have_content('Title: The Godfather, Rating: 8.7')
+        expect(page).to have_content('Title: Dilwale Dulhania Le Jayenge, Rating: 8.7')
+        expect(page).to have_content("Title: Schindler's List, Rating: 8.6")
+        expect(page).to have_content("Title: Gabriel's Inferno, Rating: 8.6")
+        expect(page).to have_content('Title: The Godfather: Part II, Rating: 8.6')
+        expect(page).to have_content("Title: Gabriel's Inferno Part III, Rating: 8.6")
+        expect(page).to have_content('Title: Hope, Rating: 8.6')
+        expect(page).to have_content("Title: Gabriel's Inferno Part II, Rating: 8.6")
+        expect(page).to have_content('Title: The Good, the Bad and the Ugly, Rating: 8.5')
+        expect(page).to have_content('Title: The Lord of the Rings: The Return of the King, Rating: 8.5')
+        expect(page).to have_content('Title: Pulp Fiction, Rating: 8.5')
+        expect(page).to have_content('Title: The Dark Knight, Rating: 8.5')
+        expect(page).to have_content('Title: The Green Mile, Rating: 8.5')
+        expect(page).to have_content('Title: 12 Angry Men, Rating: 8.5')
+        expect(page).to have_content('Title: Parasite, Rating: 8.5')
+        expect(page).to have_content('Title: Given, Rating: 8.5')
+        expect(page).to have_content('Title: Evangelion: 3.0+1.0 Thrice Upon a Time, Rating: 8.5')
+        expect(page).to have_content('Title: Spirited Away, Rating: 8.5')
     end
   end
 

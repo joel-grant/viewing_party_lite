@@ -34,10 +34,9 @@ RSpec.describe 'user discover page' do
     visit "/users/#{@user_1.id}/discover"
   end
 
-  it 'has a button to top rated movies' do
-    click_button 'Top Rated Movies'
+  it 'has a button to top rated movies', :vcr do
+      click_button 'Top Rated Movies'
 
-    expect(current_path).to eq("/users/#{@user_1.id}/movies")
+      expect(current_path).to eq("/users/#{@user_1.id}/movies")
   end
-
 end
