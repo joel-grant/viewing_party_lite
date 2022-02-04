@@ -15,7 +15,7 @@ class MovieService
     parsed = JSON.parse(response.body, symbolize_names: true)
   end
 
-  def self.movie_search(query)
+  def movie_search(query)
     movie_title = ERB::Util.url_encode query
     response = Faraday.get("https://api.themoviedb.org/3/search/movie?api_key=#{ENV['movies_api_key']}&language=en-US&query=#{movie_title}&page=1&include_adult=false")
     parsed = JSON.parse(response.body, symbolize_names: true)

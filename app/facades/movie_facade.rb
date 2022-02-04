@@ -1,6 +1,6 @@
 class MovieFacade
 
-  def all_movies
+  def self.all_movies
     movie_data = []
     movie_data << service.get_movies_page_one[:results]
     movie_data << service.get_movies_page_two[:results]
@@ -22,14 +22,14 @@ class MovieFacade
     @_all_movies
   end
 
-  def top_20
+  def self.top_20
     sorted = all_movies.sort_by { |movie| movie.vote_average }
     sorted = sorted.reverse
     top_20 = sorted.take(20)
   end
 
   def self.search(query)
-    json = MovieService.movie_search(query)
+    json = service.movie_search(query)
     results = json[:results].map do |movie|
     MovieAPI.new(movie.slice(:id,
                          :title,
@@ -41,7 +41,7 @@ class MovieFacade
     end
   end
 
-  def service
+  def self.service
     @_service ||= MovieService.new
   end
 end
