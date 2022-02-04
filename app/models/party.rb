@@ -6,10 +6,9 @@ class Party < ApplicationRecord
 
   has_many :user_parties
   has_many :users, through: :user_parties
-  belongs_to :movie
 
   def host
-    x = users
+    users
       .where('user_parties.status = ?', 'Host')
       .first
   end
@@ -17,6 +16,10 @@ class Party < ApplicationRecord
   def attendees
     users
       .where('user_parties.status = ?', 'Invited')
+  end
+
+  def movie(id)#test this
+     MovieFacade.movie_id_search(id)
   end
 
 end

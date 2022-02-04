@@ -16,7 +16,6 @@ class MovieFacade
                            :overview,
                            :vote_average,
                            :vote_count))
-
     end
 
     @_all_movies
@@ -29,7 +28,7 @@ class MovieFacade
   end
 
   def self.search(query)
-    json = service.movie_search(query)
+    json = service.movie_name_search(query)
     results = json[:results].map do |movie|
     MovieAPI.new(movie.slice(:id,
                          :title,
@@ -41,7 +40,12 @@ class MovieFacade
     end
   end
 
+  def self.movie_id_search(id)
+    @_all_movies.find { |movie| movie.db_id == id.to_i}
+  end
+
   def self.service
     @_service ||= MovieService.new
   end
+
 end

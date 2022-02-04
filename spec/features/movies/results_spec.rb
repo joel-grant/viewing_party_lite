@@ -8,15 +8,15 @@ RSpec.describe 'the movie results page' do
     @user_3 = create(:user)
     @user_4 = create(:user)
 
-    @movie1 = create(:movie)
-    @movie2 = create(:movie)
-    @movie3 = create(:movie)
-    @movie4 = create(:movie)
+    @movie1 = MovieFacade.all_movies.first
+    @movie2 = MovieFacade.all_movies.second
+    @movie3 = MovieFacade.all_movies.third
+    @movie4 = MovieFacade.all_movies.fourth
 
-    @party_1 = create(:party, movie_id: @movie1.id)
-    @party_2 = create(:party, movie_id: @movie1.id)
-    @party_3 = create(:party, movie_id: @movie2.id)
-    @party_4 = create(:party, movie_id: @movie3.id)
+    @party_1 = create(:party, movie_id: @movie1.db_id)
+    @party_2 = create(:party, movie_id: @movie1.db_id)
+    @party_3 = create(:party, movie_id: @movie2.db_id)
+    @party_4 = create(:party, movie_id: @movie3.db_id)
 
     @user_party_1 = create(:user_party, user_id: @user_1.id, party_id: @party_1.id, status: "Host")
     @user_party_2 = create(:user_party, user_id: @user_1.id, party_id: @party_2.id)
@@ -35,30 +35,13 @@ RSpec.describe 'the movie results page' do
 
   it 'lists top 20 movie titles and ratings', :vcr do
     visit "/users/#{@user_1.id}/discover"
-
       click_button "Top Rated Movies"
 
       within('#movie-results') do
-        expect(page).to have_content('Title: Your Eyes Tell, Rating: 8.8')
-        expect(page).to have_content('Title: The Shawshank Redemption, Rating: 8.7')
-        expect(page).to have_content('Title: The Godfather, Rating: 8.7')
-        expect(page).to have_content('Title: Dilwale Dulhania Le Jayenge, Rating: 8.7')
-        expect(page).to have_content("Title: Schindler's List, Rating: 8.6")
-        expect(page).to have_content("Title: Gabriel's Inferno, Rating: 8.6")
-        expect(page).to have_content('Title: The Godfather: Part II, Rating: 8.6')
-        expect(page).to have_content("Title: Gabriel's Inferno Part III, Rating: 8.6")
-        expect(page).to have_content('Title: Hope, Rating: 8.6')
-        expect(page).to have_content("Title: Gabriel's Inferno Part II, Rating: 8.6")
-        expect(page).to have_content('Title: The Good, the Bad and the Ugly, Rating: 8.5')
-        expect(page).to have_content('Title: The Lord of the Rings: The Return of the King, Rating: 8.5')
-        expect(page).to have_content('Title: Pulp Fiction, Rating: 8.5')
-        expect(page).to have_content('Title: The Dark Knight, Rating: 8.5')
-        expect(page).to have_content('Title: The Green Mile, Rating: 8.5')
-        expect(page).to have_content('Title: 12 Angry Men, Rating: 8.5')
-        expect(page).to have_content('Title: Parasite, Rating: 8.5')
-        expect(page).to have_content('Title: Given, Rating: 8.5')
-        expect(page).to have_content('Title: Evangelion: 3.0+1.0 Thrice Upon a Time, Rating: 8.5')
-        expect(page).to have_content('Title: Spirited Away, Rating: 8.5')
+        @movies = MovieFacade.top_20
+        @movies.each do |movie|
+          expect(page).to have_content("Title: #{movie.title}, Rating: #{movie.vote_average}")
+        end
     end
   end
 
@@ -84,7 +67,7 @@ RSpec.describe 'the movie results page' do
 
     expect(current_path).to eq("/users/#{@user_1.id}/movies")
 
-    click_link "Return to Discover Page"
+    click_button "Return to Discover Page"
     expect(current_path).to eq("/users/#{@user_1.id}/discover")
   end
 end

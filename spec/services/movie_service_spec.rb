@@ -21,7 +21,7 @@ RSpec.describe MovieService do
 
   it 'movie_search', :vcr do
     query = 'shawshank'
-    output = @service.movie_search(query)
+    output = @service.movie_name_search(query)
 
     expect(output).to be_a Hash
     expect(output[:results][0][:original_title]).to eq('The Shawshank Redemption')

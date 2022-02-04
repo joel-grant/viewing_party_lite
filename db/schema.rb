@@ -30,10 +30,9 @@ ActiveRecord::Schema.define(version: 2022_02_01_022853) do
     t.integer "duration"
     t.string "date"
     t.string "start_time"
-    t.bigint "movie_id"
+    t.integer "movie_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["movie_id"], name: "index_parties_on_movie_id"
   end
 
   create_table "reviews", force: :cascade do |t|
@@ -63,7 +62,6 @@ ActiveRecord::Schema.define(version: 2022_02_01_022853) do
     t.datetime "updated_at", null: false
   end
 
-  add_foreign_key "parties", "movies"
   add_foreign_key "reviews", "movies"
   add_foreign_key "user_parties", "parties"
   add_foreign_key "user_parties", "users"
