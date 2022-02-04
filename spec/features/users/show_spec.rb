@@ -64,7 +64,7 @@ RSpec.describe 'the user show page' do
   it 'has the event details for each party', :vcr do
     within('#invited-parties') do
       within("#party-#{@party_2.id}") do
-        expect(page).to have_content(@party_2.movie.title)
+        expect(page).to have_content(@movie1.title)
         expect(page).to have_content(@party_2.date)
         expect(page).to have_content(@party_2.start_time)
         expect(page).to have_content("Party Host: #{@user_2.name}")
@@ -74,7 +74,7 @@ RSpec.describe 'the user show page' do
       end
 
       within("#party-#{@party_3.id}") do
-        expect(page).to have_content(@party_3.movie.title)
+        expect(page).to have_content(@movie2.title)
         expect(page).to have_content(@party_3.date)
         expect(page).to have_content(@party_3.start_time)
         expect(page).to have_content("Party Host: #{@user_3.name}")
@@ -88,16 +88,16 @@ RSpec.describe 'the user show page' do
   it 'has a movie title for each party that is a link', :vcr do
     within('#invited-parties') do
       within("#party-#{@party_2.id}") do
-        click_link "#{@party_2.movie.title}"
+        click_link "#{@movie1.title}"
       end
     end
-    expect(current_path).to eq("/users/#{@user_1.id}/movies/#{@party_2.movie.db_id}")
+    expect(current_path).to eq("/users/#{@user_1.id}/movies/#{@movie1.db_id}")
   end
 
   it 'has a section with parties that the user has created', :vcr do
     within('#created-parties') do
       within("#party-#{@party_1.id}") do
-        expect(page).to have_content(@party_1.movie.title)
+        expect(page).to have_content(@movie1.title)
         expect(page).to have_content(@party_1.date)
         expect(page).to have_content(@party_1.start_time)
         expect(page).to have_content("Party Host: #{@user_1.name}")
