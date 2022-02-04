@@ -33,7 +33,7 @@ end
 RSpec.configure do |config|
 
   config.include Capybara::DSL
-  
+
   config.include FactoryBot::Syntax::Methods
 
   # Remove this line if you're not using ActiveRecord or ActiveRecord fixtures
@@ -73,4 +73,13 @@ Shoulda::Matchers.configure do |config|
     with.test_framework :rspec
     with.library :rails
   end
+end
+
+VCR.configure do |config|
+  config.cassette_library_dir = "spec/fixtures/vcr_cassettes"
+  config.hook_into :webmock
+  #config rspec metadata
+  config.filter_sensitive_data('<fake_movie_key>') { ENV['movies_api_key'] }
+  #another config.filter_sensitive_data
+  # config.default_cassette_options = { re_record_interval: 7.days }
 end

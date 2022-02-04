@@ -36,7 +36,6 @@ gem 'bootsnap', '>= 1.1.0', require: false
 gem 'faraday'
 
 group :development, :test do
-  # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'pry'
   gem 'rspec-rails'
   gem 'capybara'
@@ -44,18 +43,15 @@ group :development, :test do
   gem 'shoulda-matchers', '~> 3.1'
   gem 'simplecov', require: false, group: :test
   gem 'launchy'
-  # gem 'json'
   gem 'factory_bot_rails'
   gem 'faker'
-  # gem 'webmock'
+  gem 'figaro'
 end
 
 group :development do
-  # Access an interactive console on exception pages or by calling 'console' anywhere in the code.
   gem 'web-console', '>= 3.3.0'
   gem 'listen', '>= 3.0.5', '< 3.2'
   gem 'rubocop-rails'
-  # gem 'faraday'
 end
 
 group :test do
@@ -63,6 +59,8 @@ group :test do
   gem 'capybara'
   gem 'launchy'
   gem 'simplecov'
+  gem 'webmock'
+  gem 'vcr'
 end
 
 
