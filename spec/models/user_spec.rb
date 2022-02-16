@@ -5,7 +5,7 @@ RSpec.describe User, type: :model do
     it { should validate_presence_of(:name) }
     it { should validate_presence_of(:email) }
     it { should validate_uniqueness_of(:email) }
-    it { should validate_pressence_of(:password_digest) }
+    it { should validate_presence_of(:password_digest) }
     it { should have_secure_password }
   end
 
@@ -15,10 +15,10 @@ RSpec.describe User, type: :model do
   end
 
   before :each do
-    @user_1 = create(:user)
-    @user_2 = create(:user)
-    @user_3 = create(:user)
-    @user_4 = create(:user)
+    @user_1 = create(:user, password: '12345', password_confirmation: '12345')
+    @user_2 = create(:user, password: '12345', password_confirmation: '12345')
+    @user_3 = create(:user, password: '12345', password_confirmation: '12345')
+    @user_4 = create(:user, password: '12345', password_confirmation: '12345')
 
     num = 10
     # @movie1 = MovieFacade.all_movies.first
