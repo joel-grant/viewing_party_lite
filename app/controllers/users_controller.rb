@@ -34,10 +34,22 @@ class UsersController < ApplicationController
     end
   end
 
-  private
+  def login_form
 
+  end
+
+  def login_user
+    @user = User.find_by(email: params[:email])
+    if @user != nil && @user.authenticate(params[:password])
+      redirect_to "/users/#{@user.id}"
+    else
+      flash[:alert] = "Incorrect Login Information"
+      redirect_to "/login"
+    end
+  end
+
+private
   def user_params
     params.permit(:name, :email, :password, :password_confirmation)
   end
-
 end
