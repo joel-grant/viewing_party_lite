@@ -3,9 +3,9 @@ require 'rails_helper'
 RSpec.describe "welcome index", type: :view do
 
   before :each do
-    @user_1 = User.create!(name: 'Jimbo', email: 'jim@bo.com')
-    @user_2 = User.create!(name: 'Sally', email: 'sally@bo.com')
-    @user_3 = User.create!(name: 'Eric', email: 'eric@bo.com')
+    @user_1 = User.create!(name: 'Jimbo', email: 'jim@bo.com', password: '12345', password_confirmation: '12345')
+    @user_2 = User.create!(name: 'Sally', email: 'sally@bo.com', password: '12345', password_confirmation: '12345')
+    @user_3 = User.create!(name: 'Eric', email: 'eric@bo.com', password: '12345', password_confirmation: '12345')
     visit root_path
   end
 

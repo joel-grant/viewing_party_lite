@@ -3,10 +3,10 @@ require 'rails_helper'
 RSpec.describe 'the user show page' do
 
   before :each do
-    @user_1 = create(:user)
-    @user_2 = create(:user)
-    @user_3 = create(:user)
-    @user_4 = create(:user)
+    @user_1 = create(:user, password: '12345', password_confirmation: '12345')
+    @user_2 = create(:user, password: '12345', password_confirmation: '12345')
+    @user_3 = create(:user, password: '12345', password_confirmation: '12345')
+    @user_4 = create(:user, password: '12345', password_confirmation: '12345')
 
     @movie1 = MovieFacade.all_movies.first
     @movie2 = MovieFacade.all_movies.second

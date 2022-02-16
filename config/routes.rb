@@ -1,6 +1,9 @@
 Rails.application.routes.draw do
   root 'welcome#index'
-  get '/welcome/index', to: 'welcome#index'
+  # get '/welcome/index', to: 'welcome#index'
+
+  get '/login', to: 'users#login_form'
+  post '/login', to: 'users#login_user'
 
   get '/register', to: 'users#new'
 
@@ -12,5 +15,4 @@ Rails.application.routes.draw do
   get '/users/:id/movies', to: 'movies#results'
 
   post '/users/:user_id/movies/:movie_id/viewing-party/create', to: 'user_party#create'
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

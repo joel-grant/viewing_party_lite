@@ -3,6 +3,7 @@
 <h3>By Joel Grant and Dylan Harper</h3>
 
 <p><%= button_to "Create User", "/register", method: :get %></p>
+<p><%= link_to "Log In", "/login", method: :get %></p>
 
 <% @users.each do |user| %>
   <p><%= link_to "#{user.name}", "/users/#{user.id}" %></p>
