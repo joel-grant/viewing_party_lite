@@ -13,18 +13,18 @@ RSpec.describe Party, type: :model do
   end
 
   before :each do
-    @user_1 = create(:user)
-    @user_2 = create(:user)
-    @user_3 = create(:user)
-    @user_4 = create(:user)
+    @user_1 = create(:user, password: '12345', password_confirmation: '12345')
+    @user_2 = create(:user, password: '12345', password_confirmation: '12345')
+    @user_3 = create(:user, password: '12345', password_confirmation: '12345')
+    @user_4 = create(:user, password: '12345', password_confirmation: '12345')
 
     num = 10
 
 
-    @party_1 = create(:party, movie_id: @movie1.id)
-    @party_2 = create(:party, movie_id: @movie1.id)
-    @party_3 = create(:party, movie_id: @movie2.id)
-    @party_4 = create(:party, movie_id: @movie3.id)
+    # @party_1 = create(:party, movie_id: @movie1.id)
+    # @party_2 = create(:party, movie_id: @movie1.id)
+    # @party_3 = create(:party, movie_id: @movie2.id)
+    # @party_4 = create(:party, movie_id: @movie3.id)
     @party = create(:party)
 
     @party_1 = create(:party, movie_id: num)

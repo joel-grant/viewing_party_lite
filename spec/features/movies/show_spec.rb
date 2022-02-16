@@ -3,7 +3,7 @@ require 'rails_helper'
 RSpec.describe 'Movie Details page' do
   before :each do
     @movie = MovieFacade.all_movies.first
-    @user = create(:user)
+    @user = create(:user, password: '12345', password_confirmation: '12345')
   end
 
   it 'has a button to create a viewing party that takes the user to the new viewing party page', :vcr do

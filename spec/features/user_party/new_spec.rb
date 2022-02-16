@@ -3,7 +3,7 @@ require 'rails_helper'
 RSpec.describe 'Viewing Party Create Page' do
   before :each do
     @movie = MovieFacade.all_movies.first
-    @user = create(:user)
+    @user = create(:user, password: '12345', password_confirmation: '12345')
     @name = @user.name.capitalize
     visit "/users/#{@user.id}/movies/#{@movie.db_id}/viewing-party/new"
   end
