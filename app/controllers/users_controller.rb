@@ -11,9 +11,27 @@ class UsersController < ApplicationController
   end
 
   def create
-    require 'pry'; binding.pry
     @user = User.create(user_params)
-    redirect_to "/users/#{@user.id}"
+
+    if @user.save
+      flash[:alert] = "User Created Successfully!"
+      redirect_to "/users/#{@user.id}"
+    elsif @user.name.empty?
+      flash[:alert] = "Name can not be blank!"
+      redirect_to "/register"
+    elsif @user.email.empty?
+      flash[:alert] = "Email can not be blank!"
+      redirect_to "/register"
+    elsif @user.email.empty? && @user.name.empty?
+      flash[:alert] = "Name and Email can not be blank!"
+      redirect_to "/register"
+    elsif params[:password].empty? || params[:password_confirmation].empty?
+      flash[:alert] = "Password and/or Password Confirmation can not be blank!"
+      redirect_to "/register"
+    elsif @user.errors.messages[:password_confirmation][0] == "doesn't match Password"
+      flash[:alert] = "The passwords must match!"
+      redirect_to "/register"
+    end
   end
 
   private
