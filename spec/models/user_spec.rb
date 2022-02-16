@@ -2,8 +2,11 @@ require 'rails_helper'
 
 RSpec.describe User, type: :model do
   describe "validations" do
-    it { should validate_presence_of :name }
-    it { should validate_presence_of :email}
+    it { should validate_presence_of(:name) }
+    it { should validate_presence_of(:email) }
+    it { should validate_uniqueness_of(:email) }
+    it { should validate_pressence_of(:password_digest) }
+    it { should have_secure_password }
   end
 
   describe 'relationships' do
@@ -37,7 +40,6 @@ RSpec.describe User, type: :model do
     @user_party_7 = create(:user_party, user_id: @user_3.id, party_id: @party_1.id)
     @user_party_8 = create(:user_party, user_id: @user_4.id, party_id: @party_1.id)
   end
-
 
   describe 'instance methods' do
     it '#invited_parties' do
