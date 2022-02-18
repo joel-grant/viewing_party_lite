@@ -46,6 +46,17 @@ RSpec.describe "welcome index", type: :view do
         expect(page).to have_content("You must be logged in to access this page!")
       end
     end
+
+    context 'when I go to to a movies page and I click the button to create a viewing party' do
+      it 'displays a message that I must be logged in or registered', :vcr do
+        movie = MovieFacade.all_movies.first
+
+        visit "/movies/#{movie.db_id}"
+
+        click_button "Create a Viewing Party"
+        expect(page).to have_content("You must be logged in to perform this action!")
+      end
+    end
   end
 
   context 'as a registered user' do

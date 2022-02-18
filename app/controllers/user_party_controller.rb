@@ -2,7 +2,12 @@ class UserPartyController < ApplicationController
 
   def new
     @movie = MovieFacade.movie_id_search(params[:movie_id])
-    @user = User.find(session[:user_id])
+    if session[:user_id]
+      @user = User.find(session[:user_id])
+    else
+      flash[:alert] = "You must be logged in to perform this action!"
+      redirect_to "/movies/#{@movie.db_id}"
+    end
     @users = User.all
   end
 
