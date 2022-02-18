@@ -35,6 +35,17 @@ RSpec.describe "welcome index", type: :view do
         expect(page).to_not have_content(user.email)
       end
     end
+
+    context 'when I visit the landing page then visit the /dashboard' do
+      it 'tells me I must be logged in to access the dashboard' do
+        visit "/"
+
+        visit "/dashboard"
+
+        expect(current_path).to eq("/")
+        expect(page).to have_content("You must be logged in to access this page!")
+      end
+    end
   end
 
   context 'as a registered user' do

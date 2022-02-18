@@ -7,7 +7,12 @@ class UsersController < ApplicationController
   end
 
   def show
-    @user = User.find(session[:user_id])
+    if session[:user_id]
+      @user = User.find(session[:user_id])
+    else
+      flash[:alert] = "You must be logged in to access this page!"
+      redirect_to "/"
+    end
   end
 
   def create
