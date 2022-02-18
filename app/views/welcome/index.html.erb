@@ -1,9 +1,12 @@
 <p><%= link_to "Home Page", root_path %></p>
 <h1>Viewing Party Lite</h1>
-<h3>By Joel Grant and Dylan Harper</h3>
 
-<p><%= button_to "Create User", "/register", method: :get %></p>
-<p><%= link_to "Log In", "/login", method: :get %></p>
+<% if session[:user_id] %>
+  <p><%= link_to "Log Out", "/logout", method: :delete %></p>
+<% else %>
+  <p><%= button_to "Create User", "/register", method: :get %></p>
+  <p><%= link_to "Log In", "/login", method: :get %></p>
+<% end %>
 
 <% @users.each do |user| %>
   <p><%= link_to "#{user.name}", "/users/#{user.id}" %></p>
