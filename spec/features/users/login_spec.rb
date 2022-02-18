@@ -26,7 +26,7 @@ RSpec.describe 'User Login Screen' do
       fill_in "password", with: "password123"
       click_button "Log In"
 
-      expect(current_path).to eq("/users/#{user.id}")
+      expect(current_path).to eq("/dashboard")
     end
 
     it 'shows a flash message if incorrect credentials are used' do

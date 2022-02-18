@@ -11,7 +11,7 @@ RSpec.describe 'Register User Page' do
 
     click_button 'Register'
 
-    expect(current_path).to eq("/users/#{User.last.id}")
+    expect(current_path).to eq("/dashboard")
   end
 
   it 'should display a detailed error message if I fail to fill in any information' do

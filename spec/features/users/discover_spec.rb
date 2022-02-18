@@ -3,7 +3,7 @@ require 'rails_helper'
 RSpec.describe 'user discover page' do
 
   before :each do
-    @user_1 = create(:user, password: '12345', password_confirmation: '12345')
+    @user_1 = create(:user, name: "snoopy@test.com", email: "snoopy@test.com", password: '12345', password_confirmation: '12345')
     @user_2 = create(:user, password: '12345', password_confirmation: '12345')
     @user_3 = create(:user, password: '12345', password_confirmation: '12345')
     @user_4 = create(:user, password: '12345', password_confirmation: '12345')
@@ -31,12 +31,18 @@ RSpec.describe 'user discover page' do
     @user_party_11 = create(:user_party, user_id: @user_4.id, party_id: @party_3.id)
     @user_party_12 = create(:user_party, user_id: @user_4.id, party_id: @party_4.id, status: "Host")
 
-    visit "/users/#{@user_1.id}/discover"
+    visit "/login"
+
+    fill_in "email", with: "snoopy@test.com"
+    fill_in "password", with: "12345"
+    click_button "Log In"
+
+    visit "/discover"
   end
 
   it 'has a button to top rated movies', :vcr do
       click_button 'Top Rated Movies'
 
-      expect(current_path).to eq("/users/#{@user_1.id}/movies")
+      expect(current_path).to eq("/movies")
   end
 end

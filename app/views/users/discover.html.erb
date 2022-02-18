@@ -1,6 +1,6 @@
-<p><%= button_to "Top Rated Movies", "/users/#{@user.id}/movies", params: {q: 'top20'}, method: :get %></p>
+<p><%= button_to "Top Rated Movies", "/movies", params: {q: 'top20'}, method: :get %></p>
 
-<%= form_with url: "/users/#{@user.id}/movies", method: :get, local: true do |f| %>
+<%= form_with url: "/movies", method: :get, local: true do |f| %>
   <%= f.label :keyword %>
   <%= f.text_field :keyword %>
   <%= f.submit "Search" %>
