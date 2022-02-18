@@ -12,9 +12,7 @@ RSpec.describe "welcome index", type: :view do
   it 'links to the welcome page' do
     expect(page).to have_content('Viewing Party Lite')
     expect(page).to have_button('Create User')
-    expect(page).to have_link("#{@user_1.name}")
-    expect(page).to have_link("#{@user_2.name}")
-    expect(page).to have_link("#{@user_3.name}")
+
     expect(page).to have_link("Home Page")
 
     click_link "Home Page"
@@ -26,5 +24,36 @@ RSpec.describe "welcome index", type: :view do
     click_button "Create User"
 
     expect(current_path).to eq("/register")
+  end
+
+  context 'as a visitor' do
+    it 'does not show the list of other users' do
+      visit "/"
+      users = User.all
+
+      users.each do |user|
+        expect(page).to_not have_content(user.email)
+      end
+    end
+  end
+
+  context 'as a registered user' do
+    it 'shows a list of email addresses of other users' do
+      visit "/"
+
+      click_link "Log In"
+
+      fill_in "email", with: "jim@bo.com"
+      fill_in "password", with: "12345"
+      click_button "Log In"
+
+      visit "/"
+
+      users = User.all
+
+      users.each do |user|
+        expect(page).to have_content(user.email)
+      end
+    end
   end
 end
