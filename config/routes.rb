@@ -3,7 +3,7 @@ Rails.application.routes.draw do
   # get '/welcome/index', to: 'welcome#index'
 
   get '/login', to: 'users#login_form'
-  post '/login', to: 'users#login_user'
+  post '/login', to: 'sessions#create'
 
   get '/register', to: 'users#new'
 
