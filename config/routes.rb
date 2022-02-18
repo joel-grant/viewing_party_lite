@@ -8,11 +8,11 @@ Rails.application.routes.draw do
   get '/register', to: 'users#new'
 
   post '/users', to: 'users#create'
-  get '/users/:id', to: 'users#show'
-  get '/users/:id/discover', to: 'users#discover'
-  get '/users/:user_id/movies/:movie_id', to: 'movies#show'
-  get '/users/:user_id/movies/:movie_id/viewing-party/new', to: 'user_party#new'
-  get '/users/:id/movies', to: 'movies#results'
+  get '/dashboard', to: 'users#show'
+  get '/discover', to: 'users#discover'
+  get '/movies/:movie_id', to: 'movies#show'
+  get '/movies/:movie_id/viewing-party/new', to: 'user_party#new'
+  get '/movies', to: 'movies#results'
 
-  post '/users/:user_id/movies/:movie_id/viewing-party/create', to: 'user_party#create'
+  post '/movies/:movie_id/viewing-party/create', to: 'user_party#create'
 end

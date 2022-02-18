@@ -1,7 +1,7 @@
 class MoviesController < ApplicationController
   def results
     # require 'pry'; binding.pry
-    @user = User.find(params[:id])
+    @user = User.find(session[:user_id])
 
     if params[:q] == 'top20'
       @results = MovieFacade.top_20
@@ -11,7 +11,7 @@ class MoviesController < ApplicationController
   end
 
   def show
-    @user = User.find(params[:user_id])
+    @user = User.find(session[:user_id])
     @movie = MovieFacade.movie_id_search(params[:movie_id])
     @genres = MovieGenreFacade.genres(@movie.genre_ids)
     @cast = MovieCastFacade.first_10_cast_members(params[:movie_id])

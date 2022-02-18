@@ -3,19 +3,20 @@ class UsersController < ApplicationController
   end
 
   def discover
-    @user = User.find(params[:id])
+    @user = User.find(session[:user_id])
   end
 
   def show
-    @user = User.find(params[:id])
+    @user = User.find(session[:user_id])
   end
 
   def create
     @user = User.create(user_params)
 
     if @user.save
+      session[:user_id] = @user.id
       flash[:alert] = "User Created Successfully!"
-      redirect_to "/users/#{@user.id}"
+      redirect_to "/dashboard"
     elsif @user.name.empty?
       flash[:alert] = "Name can not be blank!"
       redirect_to "/register"
@@ -35,7 +36,6 @@ class UsersController < ApplicationController
   end
 
   def login_form
-
   end
 
   # def login_user

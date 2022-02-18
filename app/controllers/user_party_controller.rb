@@ -2,7 +2,7 @@ class UserPartyController < ApplicationController
 
   def new
     @movie = MovieFacade.movie_id_search(params[:movie_id])
-    @user = User.find(params[:user_id])
+    @user = User.find(session[:user_id])
     @users = User.all
   end
 
@@ -12,10 +12,10 @@ class UserPartyController < ApplicationController
                   start_time: params[:start_time],
                   movie_id: params[:movie_id])
 
-    UserParty.create!(user_id: params[:user_id],
+    UserParty.create!(user_id: session[:user_id],
                        party_id: party.id,
                        status: "Host",)
 
-    redirect_to "/users/#{params[:user_id]}"
+    redirect_to "/dashboard"
   end
 end

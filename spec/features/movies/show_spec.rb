@@ -3,39 +3,45 @@ require 'rails_helper'
 RSpec.describe 'Movie Details page' do
   before :each do
     @movie = MovieFacade.all_movies.first
-    @user = create(:user, password: '12345', password_confirmation: '12345')
+    @user = create(:user, name: "snoopy@test.com", email: "snoopy@test.com", password: '12345', password_confirmation: '12345')
+
+    visit "/login"
+
+    fill_in "email", with: "snoopy@test.com"
+    fill_in "password", with: "12345"
+    click_button "Log In"
   end
 
   it 'has a button to create a viewing party that takes the user to the new viewing party page', :vcr do
-    visit "/users/#{@user.id}/movies/#{@movie.db_id}"
+    visit "/movies/#{@movie.db_id}"
     click_button "Create a Viewing Party"
-    expect(current_path).to eq("/users/#{@user.id}/movies/#{@movie.db_id}/viewing-party/new")
+    expect(current_path).to eq("/movies/#{@movie.db_id}/viewing-party/new")
   end
 
   it 'has a button to return to the discover page', :vcr do
-    visit "/users/#{@user.id}/movies/#{@movie.db_id}"
+    visit "/movies/#{@movie.db_id}"
     click_button "Return to Discover Page"
-    expect(current_path).to eq("/users/#{@user.id}/discover")
+    expect(current_path).to eq("/discover")
   end
 
   it 'displays the movie title', :vcr do
-    visit "/users/#{@user.id}/movies/#{@movie.db_id}"
+    visit "/movies/#{@movie.db_id}"
 
     expect(page).to have_content("Movie Title: #{@movie.title}")
   end
 
   it 'displays the vote average of the movie', :vcr do
-    visit "/users/#{@user.id}/movies/#{@movie.db_id}"
+    visit "/movies/#{@movie.db_id}"
     expect(page).to have_content("Vote Average: #{@movie.vote_average}")
   end
 
   it 'displays the runtime in hours and minutes', :vcr do
-    visit "/users/#{@user.id}/movies/#{@movie.db_id}"
+    visit "/movies/#{@movie.db_id}"
     expect(page).to have_content("Runtime: #{@movie.runtime}")
   end
 
   it 'displays the genres associated with the movie', :vcr do
-    visit "/users/#{@user.id}/movies/#{@movie.db_id}"
+    visit "/movies/#{@movie.db_id}"
 
     within("#genres") do
       expect(page).to have_content(@movie.genre_ids[0])
@@ -46,14 +52,14 @@ RSpec.describe 'Movie Details page' do
   end
 
   it 'displays the movie summary', :vcr do
-    visit "/users/#{@user.id}/movies/#{@movie.db_id}"
+    visit "/movies/#{@movie.db_id}"
 
     expect(page).to have_content(@movie.overview)
   end
 
   it 'displays the movies cast', :vcr do
     godfather_movie_id = 238
-    visit "/users/#{@user.id}/movies/#{godfather_movie_id}"
+    visit "/movies/#{godfather_movie_id}"
     cast = MovieCastFacade.first_10_cast_members(godfather_movie_id)
 
     expect(cast.count).to be(10)
@@ -76,7 +82,7 @@ RSpec.describe 'Movie Details page' do
 
   it 'displays the movies reviews', :vcr do
     godfather_movie_id = 238
-    visit "/users/#{@user.id}/movies/#{godfather_movie_id}"
+    visit "/movies/#{godfather_movie_id}"
     reviews = MovieReviewFacade.reviews(godfather_movie_id)
 
     expect(reviews.count).to be <= 10

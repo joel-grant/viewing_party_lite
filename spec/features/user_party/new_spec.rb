@@ -3,9 +3,16 @@ require 'rails_helper'
 RSpec.describe 'Viewing Party Create Page' do
   before :each do
     @movie = MovieFacade.all_movies.first
-    @user = create(:user, password: '12345', password_confirmation: '12345')
+    @user = create(:user, name: "snoopy@test.com", email: "snoopy@test.com", password: '12345', password_confirmation: '12345')
     @name = @user.name.capitalize
-    visit "/users/#{@user.id}/movies/#{@movie.db_id}/viewing-party/new"
+
+    visit "/login"
+
+    fill_in "email", with: "snoopy@test.com"
+    fill_in "password", with: "12345"
+    click_button "Log In"
+
+    visit "/movies/#{@movie.db_id}/viewing-party/new"
   end
 
   it 'displays the movie name', :vcr do
@@ -50,7 +57,7 @@ RSpec.describe 'Viewing Party Create Page' do
 
     click_button "Create Party"
 
-    expect(current_path).to eq("/users/#{@user.id}")
+    expect(current_path).to eq("/dashboard")
     expect(page).to have_content(@movie.title)
   end
 end

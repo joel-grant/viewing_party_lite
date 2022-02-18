@@ -3,7 +3,7 @@ require 'rails_helper'
 RSpec.describe 'the user show page' do
 
   before :each do
-    @user_1 = create(:user, password: '12345', password_confirmation: '12345')
+    @user_1 = create(:user, name: "snoopy@test.com", email: "snoopy@test.com", password: '12345', password_confirmation: '12345')
     @user_2 = create(:user, password: '12345', password_confirmation: '12345')
     @user_3 = create(:user, password: '12345', password_confirmation: '12345')
     @user_4 = create(:user, password: '12345', password_confirmation: '12345')
@@ -31,11 +31,17 @@ RSpec.describe 'the user show page' do
     @user_party_11 = create(:user_party, user_id: @user_4.id, party_id: @party_3.id)
     @user_party_12 = create(:user_party, user_id: @user_4.id, party_id: @party_4.id, status: "Host")
 
-    visit "/users/#{@user_1.id}"
+    visit "/login"
+
+    fill_in "email", with: "snoopy@test.com"
+    fill_in "password", with: "12345"
+    click_button "Log In"
+
+    visit "/dashboard"
   end
 
   it 'can visit the correct show page', :vcr do
-    expect(current_path).to eq("/users/#{@user_1.id}")
+    expect(current_path).to eq("/dashboard")
   end
 
   it 'can display the user info', :vcr do
@@ -46,7 +52,7 @@ RSpec.describe 'the user show page' do
   it 'has discover movie button', :vcr do
     click_button "Discover Movies"
 
-    expect(current_path).to eq("/users/#{@user_1.id}/discover")
+    expect(current_path).to eq("/discover")
   end
 
   it 'has the event details for each party', :vcr do
@@ -79,7 +85,7 @@ RSpec.describe 'the user show page' do
         click_link "#{@movie1.title}"
       end
     end
-    expect(current_path).to eq("/users/#{@user_1.id}/movies/#{@movie1.db_id}")
+    expect(current_path).to eq("/movies/#{@movie1.db_id}")
   end
 
   it 'has a section with parties that the user has created', :vcr do
